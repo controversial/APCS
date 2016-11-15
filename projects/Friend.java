@@ -98,10 +98,7 @@ public class Friend
      *      following rules 1 and 2 above.
      */
     public void addFriend(Friend fnd) {
-        String n = fnd.getName();
-        if ((this.friend1 == null || !n.equals(this.friend1.getName())) &&
-                (this.friend2 == null || !n.equals(this.friend2.getName())) &&
-                (this.friend3 == null || !n.equals(this.friend3.getName()))) {
+        if (fnd != this.friend1 && fnd != this.friend2 && fnd != this.friend3) {
             this.friend3 = this.friend2;
             this.friend2 = this.friend1;
             this.friend1 = fnd;
@@ -142,9 +139,9 @@ public class Friend
      */
     public String getFriendsInCommon(Friend fnd) {
         String out = "\n  ";
-        if (this.getFriends().contains(fnd.friend1.getName())) out += fnd.friend1.getName() + "\n  ";
-        if (this.getFriends().contains(fnd.friend2.getName())) out += fnd.friend2.getName() + "\n  ";
-        if (this.getFriends().contains(fnd.friend3.getName())) out += fnd.friend3.getName() + "\n  ";
+        if (this.friend1 != null && this.getFriends().contains(fnd.friend1.getName())) out += fnd.friend1.getName() + "\n  ";
+        if (this.friend2 != null && this.getFriends().contains(fnd.friend2.getName())) out += fnd.friend2.getName() + "\n  ";
+        if (this.friend3 != null && this.getFriends().contains(fnd.friend3.getName())) out += fnd.friend3.getName() + "\n  ";
         return out.substring(0, out.length()-3);
     }
 
