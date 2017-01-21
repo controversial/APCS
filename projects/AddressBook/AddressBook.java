@@ -25,7 +25,6 @@ public class AddressBook {
         }
         for (int i=0; i<list.size()-1; i++) {
             Contact current = list.get(i);
-            int compared = last.compareTo(current.getLast());
             if (last.compareTo(current.getLast()) < 0) {
                 list.add(i, new Contact(first, last, email));
                 return;
