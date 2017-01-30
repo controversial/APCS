@@ -25,12 +25,14 @@ public class FuelDepot
      */
     public int nextTankToFill(int threshold)
     {
+        int lowIndex = this.filler.getCurrentIndex();
         for (int i=0; i<tanks.size(); i++) {
-            if (tanks.get(i).getFuelLevel() <= threshold) {
-                return i;
+            int level = tanks.get(i).getFuelLevel();
+            if (level <= threshold && level < tanks.get(i).getFuelLevel()) {
+                lowIndex = i;
             }
         }
-        return this.filler.getCurrentIndex();
+        return lowIndex;
     }
 
     /** Moves the robot to location locIndex.
