@@ -127,27 +127,27 @@ public class Magpie
         /** convert to lower case **/
         statement = statement.toLowerCase();
         goal = goal.toLowerCase();
-
-        /** <<< Add your code for Activity 3 here >>> **/
-        int tentativeIndex = statement.indexOf(goal, startPos);
-        if (tentativeIndex == -1) return -1;
-
         String letters = "abcdefghijklmnopqrstuvwxyz";
-        // Is there a letter before it?
-        boolean isLetterBefore = false;
-        if (tentativeIndex > 0)
-             isLetterBefore = letters.contains(statement.substring(tentativeIndex-1, tentativeIndex));
 
-        // Is there a letter after the end?
-        String charAfter;
-        boolean isLetterAfter = false;
-        if (tentativeIndex + goal.length() < statement.length()) {
-            charAfter = statement.substring(tentativeIndex + goal.length(), tentativeIndex + goal.length() + 1);
-            isLetterAfter = letters.contains(charAfter);
+        for (int tentativeIndex=0; tentativeIndex <= statement.length()-goal.length(); tentativeIndex++) {
+            if (statement.substring(tentativeIndex, tentativeIndex+goal.length()).equals(goal)) {
+                // Is there a letter before it?
+                boolean isLetterBefore = false;
+                if (tentativeIndex > 0)
+                    isLetterBefore = letters.contains(statement.substring(tentativeIndex-1, tentativeIndex));
+
+                // Is there a letter after the end?
+                String charAfter;
+                boolean isLetterAfter = false;
+                if (tentativeIndex + goal.length() < statement.length()) {
+                    charAfter = statement.substring(tentativeIndex + goal.length(), tentativeIndex + goal.length() + 1);
+                    isLetterAfter = letters.contains(charAfter);
+                }
+
+                if (!isLetterBefore && !isLetterAfter) return tentativeIndex;
+            }
         }
-
-        if (tentativeIndex == -1 || isLetterBefore || isLetterAfter) return -1;
-        else return tentativeIndex;
+        return -1;
     }
 
     /** --- This method is complete!!! --
