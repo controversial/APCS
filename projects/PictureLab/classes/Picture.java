@@ -121,9 +121,10 @@ public class Picture extends SimplePicture
         Pixel[][] pixels = this.getPixels2D();
         for (Pixel[] rowArray : pixels) {
             for (Pixel pixelObj : rowArray) {
-                pixelObj.setRed((int) pixelObj.getAverage());
-                pixelObj.setGreen((int) pixelObj.getAverage());
-                pixelObj.setBlue((int) pixelObj.getAverage());
+                int avg = (int) pixelObj.getAverage();
+                pixelObj.setRed(avg);
+                pixelObj.setGreen(avg);
+                pixelObj.setBlue(avg);
             }
         }
     }
